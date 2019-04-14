@@ -294,7 +294,7 @@ function isCreditCardNumber(ccn) {
  *   165536 (1+6+5+5+3+6 = 26,  2+6 = 8) => 8
  */
 function getDigitalRoot(num) {
-    while (num > 9) {
+    /*while (num > 9) {
         let i = num;
         num = 0;
         while (i > 0) {
@@ -302,7 +302,8 @@ function getDigitalRoot(num) {
             i = Math.floor(i / 10);
         }
     }
-    return num;
+    return num;*/
+    return (num - 1) % 9 + 1;
 }
 
 
