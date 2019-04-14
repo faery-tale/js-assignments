@@ -365,7 +365,19 @@ function isBracketsBalanced(str) {
  *
  */
 function timespanToHumanString(startDate, endDate) {
-    throw new Error('Not implemented');
+    let dif = endDate.getTime() - startDate.getTime(),
+        s = 1000, m = s * 60, h = m * 60, d = h * 24;
+        if(dif <= s * 45) return 'a few seconds ago';
+        if(dif <= s * 90) return 'a minute ago';
+        if(dif <= m * 45) return (Math.round((dif - 1) / m) + ' minutes ago');
+        if(dif <= m * 90) return 'an hour ago';
+        if(dif <= h * 22) return (Math.round((dif - 1) / h) + ' hours ago');
+        if(dif <= h * 36) return 'a day ago';
+        if(dif <= d * 25) return (Math.round((dif - 1) / d) + ' days ago');
+        if(dif <= d * 45) return 'a month ago';
+        if(dif <= d * 345) return (Math.round((dif / d / 30)) + ' months ago');
+        if(dif <= d * 545) return 'a year ago';
+        return (Math.round((dif / d / 365)) + ' years ago')
 }
 
 
@@ -412,7 +424,19 @@ function toNaryString(num, n) {
  *   ['/web/favicon.ico', '/web-scripts/dump', '/webalizer/logs'] => '/'
  */
 function getCommonDirectoryPath(pathes) {
-    throw new Error('Not implemented');
+    let result = '';
+    for(let i = 0; i < pathes[0].length; i++){
+        let b = true;
+        for(let j = 0; j < pathes.length; j++){
+            if(pathes[0][i] !== pathes[j][i]){
+                b = false;
+                break;
+            }
+        }
+        if(!b) break;
+        else result += pathes[0][i];
+    }
+    return result.slice(0, result.lastIndexOf('/') + 1);
 }
 
 
